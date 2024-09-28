@@ -16,6 +16,7 @@ app.use('/api/features', require('./routes/features'));
 app.use('/api/resources', require('./routes/resources'));
 app.use('/api/gallery-events', require('./routes/galleryEvents'));
 app.use('/api/aboutus', require('./routes/aboutus'));
+app.use('/api/join', require('./routes/join'));
 
 const PORT = process.env.PORT || 5000;
 
