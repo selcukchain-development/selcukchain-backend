@@ -18,7 +18,18 @@ const AboutUsSchema = new mongoose.Schema({
     name: String,
     role: String,
     bio: String,
+    imagePath: { // New field for team member's image path
+      type: String,
+      required: true,
+    },
+    socialMedia: {
+      github: String,
+      linkedin: String,
+      twitter: String,
+      instagram: String,
+    }
   }],
+
 }, { timestamps: true });
 
 module.exports = mongoose.model('AboutUs', AboutUsSchema);

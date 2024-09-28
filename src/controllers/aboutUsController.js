@@ -14,13 +14,31 @@ exports.updateAboutUs = async (req, res) => {
   try {
     const { vision, mission, features, teamMembers } = req.body;
     let aboutUs = await AboutUs.findOne();
+    console.log(req.body, 'req.body');
 
     if (aboutUs) {
+      // Update existing AboutUs document
       aboutUs.vision = vision;
       aboutUs.mission = mission;
       aboutUs.features = features;
-      aboutUs.teamMembers = teamMembers;
+      if (teamMembers) {
+        // Validate team members
+        for (const member of teamMembers) {
+          if (!member.imagePath) {
+            return res.status(400).json({ msg: 'imagePath is required for all team members.' });
+          }
+        }
+
+        aboutUs.teamMembers = teamMembers.map(member => ({
+          name: member.name,
+          role: member.role,
+          bio: member.bio,
+          imagePath: member.imagePath,
+          socialMedia: member.socialMedia,
+        }));
+      }
     } else {
+      // Create new AboutUs document
       aboutUs = new AboutUs({ vision, mission, features, teamMembers });
     }
 
