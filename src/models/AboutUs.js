@@ -9,6 +9,10 @@ const AboutUsSchema = new mongoose.Schema({
     type: String,
     required: true,
   },
+  imageUrl: {
+    type: String,
+    required: true
+  },
   features: [{
     icon: String,
     title: String,
@@ -18,7 +22,7 @@ const AboutUsSchema = new mongoose.Schema({
     name: String,
     role: String,
     bio: String,
-    imagePath: { // New field for team member's image path
+    imageUrl: {
       type: String,
       required: true,
     },
@@ -29,7 +33,6 @@ const AboutUsSchema = new mongoose.Schema({
       instagram: String,
     }
   }],
-
 }, { timestamps: true });
 
 module.exports = mongoose.model('AboutUs', AboutUsSchema);
